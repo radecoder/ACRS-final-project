@@ -1,0 +1,78 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  html body {
+    background-color: rgb(206, 206, 228);
+
+
+  }
+</style>
+<!--Form Section-->
+<br /><br />
+<h2 style="text-align: center; margin: 0px; color: black">
+  <b>Discover the Best Crop for Your Farm in Meerut</b>
+</h2>
+<br />
+
+<div style="
+    width: 350px;
+    height: 50rem;
+    margin: 0px auto;
+    color: black;
+    border-radius: 25px;
+    padding: 10px 10px;
+  ">
+<form method="post" action="/form">
+  <div class="form-group">
+    <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
+    <input type="text" min="0" max="100" class="form-control" id="Nitrogen" name="Nitrogen"
+      placeholder="Enter the value " style="font-weight: bold" required />
+  </div>
+  <div class="form-group">
+    <label for="Phosphorus" style="font-size: 17px"><b>Phosphorus</b></label>
+    <input type="text" min="0" max="100" class="form-control" id="Phosphorus" name="Phosphorus"
+      placeholder="Enter the value " style="font-weight: bold" required />
+  </div>
+
+  <div class="form-group">
+    <label for="Potassium" style="font-size: 17px"><b>Potassium</b></label>
+    <input type="text" min="0" max="100" class="form-control" id="Potassium" name="Potassium"
+      placeholder="Enter the value " style="font-weight: bold" required />
+  </div>
+
+  <div class="form-group">
+    <label for="Temperature" style="font-size: 17px"><b>Temperature</b></label>
+    <input type="text" min="0" max="100" step="0.01" class="form-control" id="Temperature" name="Temperature" placeholder="Enter the value"
+      style="font-weight: bold" required />
+  </div>
+
+  <div class="form-group">
+    <label for="Humidity" style="font-size: 17px"><b>Humidity</b></label>
+    <input type="text" min="0" max="100" step="0.01" class="form-control" id="Humidity" name="Humidity" placeholder="Enter the value"
+      style="font-weight: bold" required />
+  </div>
+
+  <div class="form-group">
+    <label for="Ph" style="font-size: 17px"><b>Ph level</b></label>
+    <input type="text" min="0" max="100" step="0.01" class="form-control" id="Ph" name="Ph" placeholder="Enter the value"
+      style="font-weight: bold" required />
+  </div>
+
+  <div class="form-group">
+    <label for="Rainfall" style="font-size: 17px"><b>Rainfall (in mm)</b></label>
+    <input type="text" min="0" max="100" step="0.01" class="form-control" id="Rainfall" name="Rainfall"
+      placeholder="Enter the value" style="font-weight: bold" required />
+  </div>
+  
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-info"
+      style="color: black; font-weight: bold; width: 130px; height:50px; border-radius:12px; font-size: 21px;">
+      Predict
+    </button>
+  </div>
+</form>
+
+<br>
+<!-- Form section -->
+
+{% endblock %}

@@ -81,11 +81,13 @@ A machine learning-based system designed to recommend the most suitable crops to
 
 ## Author 💻
 
-    Mohd Sahil
+**Mohd Sahil**
 
-    [Portfolio] : (https://radecoder.github.io/ptf/)
-    [LinkedIn]  : (https://www.linkedin.com/in/radecoder/)
-    [GitHub]    : (https://github.com/radecoder)
+- [Portfolio](https://radecoder.github.io/ptf/)
+- [LinkedIn](https://www.linkedin.com/in/radecoder/)
+- [GitHub](https://github.com/radecoder)
+
+    
 🌟 Star this repository if you find it helpful! 🌟
 
     

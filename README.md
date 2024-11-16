@@ -14,12 +14,24 @@ A machine learning-based system designed to recommend the most suitable crops to
 
 ---
 
-## Tech Stack 🛠️
-- **Programming Languages**: Python
-- **Machine Learning**: Scikit-learn, Pandas, NumPy
-- **Frontend**: HTML, CSS, Bootstrap, SCSS, JavaScript
-- **Backend**: Flask
-- **Database**: collected from local sources in Meerut with the support of my college.
+## Built with 🛠️
+
+<ul>
+  <li><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png"> Python</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png"> HTML</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png"> CSS</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"> JavaScript</li>
+  <li><img height="30" src="https://github.com/tomchen/stack-icons/raw/master/logos/bootstrap.svg"> Bootstrap</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png"> Git</li>
+  <li><img height="30" src="https://symbols.getvecta.com/stencil_80/56_flask.3a79b5a056.jpg"> Flask</li>
+  <li><img height="30" src="https://cdn.iconscout.com/icon/free/png-256/heroku-225989.png"> Heroku</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/numpy/numpy/7e7f4adab814b223f7f917369a72757cd28b10cb/branding/icons/numpylogo.svg"> NumPy</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/pandas-dev/pandas/761bceb77d44aa63b71dda43ca46e8fd4b9d7422/web/pandas/static/img/pandas.svg"> Pandas</li>
+  <li><img height="30" src="https://matplotlib.org/_static/logo2.svg"> Matplotlib</li>
+  <li><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1280px-Scikit_learn_logo_small.svg.png"> Scikit-learn</li>
+  <li><img height="30" src="https://raw.githubusercontent.com/pytorch/pytorch/39fa0b5d0a3b966a50dcd90b26e6c36942705d6d/docs/source/_static/img/pytorch-logo-dark.svg"> PyTorch</li>
+</ul>
+
 
 ---
 

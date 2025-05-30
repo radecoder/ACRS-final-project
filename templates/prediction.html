@@ -1,19 +1,158 @@
-{% extends 'layout.html' %} {% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Recommendation - Result</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-  .mt-0 {
-  margin-top: 50 !important;
-}
-</style>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<div class="container py-2 mx-auto my-50 h-10 " style="margin: 12rem;">
-  <div class="row">
-      <div class="col-sm py-2 py-md-3">
-          <div class="card card-body" style="justify-content: center;">
-               <h1 class="text-center"><b>You should grow <i>{{ prediction }} </i>in your farm</b></h1>
-          </div>
+  <!-- Custom CSS -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+  <!-- Inline Enhancements -->
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar-brand img {
+      height: 55px;
+    }
+
+    .result-card {
+      background: #ffffff;
+      border-left: 6px solid #28a745;
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .result-card:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-secondary {
+      padding: 10px 25px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #1e7e34;
+      color: #fff;
+    }
+
+    footer {
+      /* background-color: #090909; */
+      color: #d1d1d1;
+      font-size: 14px;
+
+    }
+
+    .footer-info {
+      margin-top: 20px;
+    }
+
+    .move-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 12px;
+      border-radius: 50%;
+      text-align: center;
+      display: none;
+      z-index: 999;
+    }
+
+    .move-top:hover {
+      background-color: #1e7e34;
+      text-decoration: none;
+    }
+    .bg-green-custom {
+    background-color: rgb(56, 142, 60) !important; /* Bootstrap green */
+  }
+  .bg2-green-custom {
+    background-color: rgb(28, 83, 31) !important; /* Bootstrap green */
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-green-custom">
+  <div class="container">
+  <div class="flex-shrink-0 flex items-center">
+        <a href="{{ url_for('home') }}" class="text-2xl font-bold text-white hover:text-yellow-400">AgroSmart</a>
       </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('crop_recommend') }}">Crop Form</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
-{% endblock %}
+</nav>
+
+<!-- Result Section -->
+<section class="container my-5 py-5 style="min-height: 80vh;">
+  <div class="result-card text-center mx-auto" style="max-width: 600px;">
+    <h2 class="mb-4 text-success">
+      <i class="fas fa-leaf"></i> Recommended Crop
+    </h2>
+    <h4>You should grow <strong class="text-success">{{ prediction }}</strong> in your farm.</h4>
+    <a class="btn btn-secondary mt-4" href="{{ url_for('home') }}">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-4 bg2-green-custom ">
+  <div class="container">
+    <div class="footer-info">
+      <p class="text-gray mb-1">An Environmental Intelligence Project</p>
+      <p class="mb-1 text-white">Made by <strong>TEAM 78</strong></p>
+      <p class="mb-0 text-white">&copy; 2025 MIET College Project</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Move to Top -->
+<a href="#top" class="move-top" id="moveTopBtn">
+  <!-- <i class="fas fa-arrow-up"></i> -->
+</a>
+
+<!-- Scripts -->
+<script>
+  // Show move to top button on scroll
+  const moveTopBtn = document.getElementById("moveTopBtn");
+  window.onscroll = () => {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      moveTopBtn.style.display = "block";
+    } else {
+      moveTopBtn.style.display = "none";
+    }
+  };
+</script>
+
+</body>
+</html>

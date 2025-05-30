@@ -1,72 +1,144 @@
-{% extends 'layout.html' %} 
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Recommendation - Form</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
 
-<style>
-  html body {
-    background-color: rgb(206, 206, 228);
+    .navbar {
+      box-shadow: 0 2px 4px rgb(0,0,0,0.1);
+    }
+
+    h2 {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .form-container {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background-color: #4CAF50;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #43a047;
+    }
+
+    footer {
+     background-color: #113013; /* a dark green */
+    color: white;
+    }
+
+    footer p {
+      margin: 0;
+      line-height: 1.5;
+        margin: 0.25rem 0;
+    }
+    
+  .bg-green-custom {
+    background-color: rgb(56, 142, 60) !important; /* Bootstrap green */
   }
-</style>
+  .navbar .nav-link {
+    color: white !important;
+  }
+  .navbar .nav-link:hover {
+    color: #cddc39 !important; /* lighter green on hover */
+  }
+ .bg2-green-custom {
+    background-color: rgb(28, 83, 31) !important; /* Bootstrap green */
+  }
 
-<!-- Form Section -->
-<br /><br />
-<h2 style="text-align: center; margin: 0px; color: black">
-  <b>Discover the Best Crop for Your Farm in Meerut</b>
-</h2>
-<br />
+  </style>
+</head>
+<body>
 
-<div style="width: 350px; height: 50rem; margin: 0px auto; color: black; border-radius: 25px; padding: 10px 10px;">
-  <form method="post" action="/form">
-    <div class="form-group">
-      <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
-      <input type="text" min="0" max="100" class="form-control" id="Nitrogen" name="Nitrogen"
-        placeholder="Enter the value " style="font-weight: bold" required />
-    </div>
-    <div class="form-group">
-      <label for="Phosphorus" style="font-size: 17px"><b>Phosphorus</b></label>
-      <input type="text" min="0" max="100" class="form-control" id="Phosphorus" name="Phosphorus"
-        placeholder="Enter the value " style="font-weight: bold" required />
-    </div>
+  <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-green-custom static-top">
+		<div class="container">
+			<div class="flex-shrink-0 flex items-center">
+        <a href="{{ url_for('home') }}" class="text-2xl font-bold text-white hover:text-yellow-400">AgroSmart</a>
+      </div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('crop_recommend') }}">Crop Form</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <div class="form-group">
-      <label for="Potassium" style="font-size: 17px"><b>Potassium</b></label>
-      <input type="text" min="0" max="100" class="form-control" id="Potassium" name="Potassium"
-        placeholder="Enter the value " style="font-weight: bold" required />
-    </div>
+  <!-- Heading -->
+  <div class="container text-center my-5">
+    <h2>🌱 Discover the Best Crop for Your Farm in Meerut</h2>
+    <p class="text-muted">Just enter your soil and weather conditions below</p>
+  </div>
 
-    <div class="form-group">
-      <label for="Temperature" style="font-size: 17px"><b>Temperature</b></label>
-      <input type="text" min="0" max="100" step="0.01" class="form-control" id="Temperature" name="Temperature" placeholder="Enter the value"
-        style="font-weight: bold" required />
-    </div>
+  <!-- Form -->
+  <section class="form-container">
+    <form method="POST" action="/form">
+      {% for field in ['Nitrogen', 'Phosphorus', 'Potassium', 'Temperature', 'Humidity', 'Rainfall', 'Ph'] %}
+      <div class="form-group">
+        <label for="{{ field }}">{{ field }}</label>
+        <input type="number" step="any" class="form-control" name="{{ field }}" required>
+      </div>
+      {% endfor %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-3 px-4 py-2">Predict</button>
+      </div>
+    </form>
+  </section>
 
-    <div class="form-group">
-      <label for="Humidity" style="font-size: 17px"><b>Humidity</b></label>
-      <input type="text" min="0" max="100" step="0.01" class="form-control" id="Humidity" name="Humidity" placeholder="Enter the value"
-        style="font-weight: bold" required />
-    </div>
+   <!-- Footer -->
+  <footer class="py-5 text-center bg2-green-custom">
+    <p class="mb-2 italic">"An Environmental Intelligence Project"</p>
+    <p class="mb-1">Made by <strong>TEAM 78</strong></p>
+    <p>&copy; 2025 MIET College Project</p>
+  </footer>
+<!-- Move to Top -->
+<a href="#top" class="move-top" id="moveTopBtn">
+  <!-- <i class="fas fa-arrow-up"></i> -->
+</a>
 
-    <div class="form-group">
-      <label for="Rainfall" style="font-size: 17px"><b>Rainfall (in mm)</b></label>
-      <input type="text" min="0" max="100" step="0.01" class="form-control" id="Rainfall" name="Rainfall"
-        placeholder="Enter the value" style="font-weight: bold" required />
-    </div>
-
-    
-    <div class="form-group">
-      <label for="Ph" style="font-size: 17px"><b>Ph level</b></label>
-      <input type="text" min="0" max="100" step="0.01" class="form-control" id="Ph" name="Ph" placeholder="Enter the value"
-        style="font-weight: bold" required />
-    </div>
-    
-    <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-info"
-        style="color: black; font-weight: bold; width: 130px; height:50px; border-radius:12px; font-size: 21px;">
-        Predict
-      </button>
-    </div>
-  </form>
-
-  <br>
-  <!-- Form section -->
-
-{% endblock %}
+<!-- Scripts -->
+<script>
+  // Show move to top button on scroll
+  const moveTopBtn = document.getElementById("moveTopBtn");
+  window.onscroll = () => {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      moveTopBtn.style.display = "block";
+    } else {
+      moveTopBtn.style.display = "none";
+    }
+  };
+</script>
+</body>
+</html>

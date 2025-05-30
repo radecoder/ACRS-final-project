@@ -1,49 +1,50 @@
 import joblib
-from flask import Flask, render_template, request, redirect
+import pandas as pd
+from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
-# render home page
-
+# Load the trained model
+model = joblib.load('crop_app.pkl')  # Ensure you're loading the correct updated model
 
 @ app.route('/')
 def home():
     title = 'Harvestify - Home'
     return render_template('Home_1.html', title=title)
 
-# render crop recommendation form page
-
-
 @ app.route('/crop-recommend')
 def crop_recommend():
     title = 'Harvestify - Crop Recommendation'
     return render_template('Index.html', title=title)
 
-# render crop recommendation result page
-
 @ app.route('/form', methods=['POST'])
 def brain():
     title = 'Harvestify - Crop Recommendation'
-    Nitrogen=float(request.form['Nitrogen'])
-    Phosphorus=float(request.form['Phosphorus'])
-    Potassium=float(request.form['Potassium'])
-    Temperature=float(request.form['Temperature'])
-    Humidity=float(request.form['Humidity'])
-    Ph=float(request.form['Ph'])
-    Rainfall=float(request.form['Rainfall']) 
 
-    values=[Nitrogen,Phosphorus,Potassium,Temperature,Humidity,Ph,Rainfall]
-    
-    if Ph>0 and Ph<=14 and Temperature<100 and Humidity>0:
-        model = joblib.load('crop_app')
-        arr = [values]
-        acc = model.predict(arr)
-        # print(acc)
-        return render_template('prediction.html', prediction=str(acc))
+    # Get user inputs from the form
+    Nitrogen = float(request.form['Nitrogen'])
+    Phosphorus = float(request.form['Phosphorus'])
+    Potassium = float(request.form['Potassium'])
+    Temperature = float(request.form['Temperature'])
+    Humidity = float(request.form['Humidity'])
+    Rainfall = float(request.form['Rainfall'])  
+    Ph = float(request.form['Ph'])
+
+    # Correct the feature order
+    values = [Nitrogen, Phosphorus, Potassium, Temperature, Humidity, Rainfall, Ph]
+
+    # Validate input ranges
+    if 0 < Ph <= 14 and Temperature < 100 and Humidity > 0:
+        # Convert values into a DataFrame with correct column names
+        feature_names = ["N", "P", "K", "temperature", "humidity", "rainfall", "ph"]
+        arr_df = pd.DataFrame([values], columns=feature_names)
+
+        # Predict the crop
+        acc = model.predict(arr_df)
+
+        return render_template('prediction.html', prediction=str(acc[0]))  # Extract the string value
     else:
-        return "Sorry...  Error in entered values in the form Please check the values and fill it again"
-
-
-# ===============================================================================================
+        return "Sorry... Error in entered values. Please check the form and try again."
 
 if __name__ == '__main__':
     app.run(debug=True)
